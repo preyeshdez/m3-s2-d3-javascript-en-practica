@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <div>
+        <div style="width: 40%;margin: 0 auto">
+            <h2>
+                Escríbenos !!!
+            </h2>
+
+            <form id="formulario">
+                <div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Nombre completo
+                        </label>
+                        <input id="nombre" type="text">
+                        <p class="errorNombre" style="color:red;font-style: italic;"></p>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Asunto
+                        </label>
+                        <input id="asunto" type="text">
+                        <p class="errorAsunto" style="color:red;font-style: italic;"></p>
+                    </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                    <label>
+                        Mensaje
+                    </label>
+                    <textarea id="mensaje"></textarea>
+                    <p class="errorMensaje" style="color:red;font-style: italic;"></p>
+                </div>
+                <div>
+                    <button id="botton" type="submit">
+                        Envíar mensaje
+                    </button>
+                    <div class="resultado" style="color:green;font-style: italic">
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+
+        document.getElementById("formulario").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let inputNombre = document.getElementById("nombre");
+            let inputAsunto = document.getElementById("asunto");
+            let inputMensaje = document.getElementById("mensaje");
+            let errorNombre = document.querySelector(".errorNombre");
+            let errorAsunto = document.querySelector(".errorAsunto");
+            let errorMensaje = document.querySelector(".errorMensaje");
+            let resultado = document.querySelector(".resultado");
+
+            let nombreValido = /^[a-zA-Z\s]+$/.test(inputNombre.value);
+            let asuntoValido = /^[a-zA-Z\s]+$/.test(inputAsunto.value);
+            let mensajeValido = /^[a-zA-Z\s]+$/.test(inputMensaje.value);
+
+            if (!nombreValido) {
+                errorNombre.innerHTML = "Debe ingresar un nombre y usar solo letras.";
+            } else {
+                errorNombre.innerHTML = "";
+            }
+
+            if (!asuntoValido) {
+                errorAsunto.innerHTML = "Debe ingresar un asunto y usar solo letras.";
+            } else {
+                errorAsunto.innerHTML = "";
+            }
+
+            if (!mensajeValido) {
+                errorMensaje.innerHTML = "Debe ingresar un mensaje y usar solo letras.";
+            } else {
+                errorMensaje.innerHTML = "";
+            }
+
+            if (nombreValido && asuntoValido && mensajeValido) {
+                resultado.innerHTML = "Mensaje enviado exitosamente.";
+                inputNombre.value = "";
+                inputAsunto.value = "";
+                inputMensaje.value = "";
+            } else {
+                resultado.innerHTML = "";
+            }
+
+        });
+    </script>
+</body>
+
+</html>
